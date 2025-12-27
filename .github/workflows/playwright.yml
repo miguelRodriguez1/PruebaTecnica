@@ -13,10 +13,10 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
-    - uses: microsoft/playwright-github-action@v1
-      with:
-        # opcional: cache de node_modules
-        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run Playwright tests (with Xvfb)
+      run: xvfb-run --auto-servernum --server-args='-screen 0 1280x720x24' npx playwright test
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
