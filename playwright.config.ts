@@ -28,6 +28,7 @@ export default defineConfig({
     headless: true,
     viewport: { width: 1920, height: 1080  },
     launchOptions: {
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
       slowMo: 500        // Ralentiza todas las acciones 500 ms
     },
     
