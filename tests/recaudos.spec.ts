@@ -1,9 +1,9 @@
 // tests/recaudos.spec.ts
 //import { Given, When, Then } from '@cucumber/cucumber'
-import { test, expect } from '@playwright/test';
+import { test,expect } from '@playwright/test';
 import { HomePage } from '../src/pages/HomePage.ts';
 import {RecaudosPage} from '../src/pages/RecaudosPage.ts';
-import { ValidatePDF}from '../src/pages/ValidatePDF.ts';
+import { isPalindrome, printIsPalindrome } from '../src/utils/palindrome';
 
 /*
 let home: HomePage;
@@ -45,9 +45,22 @@ test.describe('Validación de Reglamento de Recaudos', () => {
     
     //const validatePDF = new ValidatePDF(page);
     //validatePDF.validaTituloPDF();
-    })
-  }
+  });
+});
 
-  
-);
+test.describe('Validación frase palindroma', () => {
+  test('Debe validar si una frase es palindroma', async () => {
+    // Casos de prueba y salida en consola
+    const a = 'Anita lava la tina';
+    const b = 'A man, a plan, a canal: Panama';
+    const c = 'Hola mundo';
+
+    // Imprimir resultados en consola (la función no devuelve valor)
+    printIsPalindrome(a);
+    printIsPalindrome(b);
+    printIsPalindrome(c);
+  });
+});
+
+
 
