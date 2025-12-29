@@ -27,7 +27,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=github
+        run: npm run test:ci
 
       - name: Upload Playwright report (artifact)
         if: always()
