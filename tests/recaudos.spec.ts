@@ -1,8 +1,12 @@
-// tests/recaudos.spec.ts
+/**
+ * Pruebas de integración para la sección de Recaudos y utilidades de ejemplo.
+ * - Verifica navegación hasta el reglamento de recaudos y apertura de PDF.
+ * - Incluye una prueba de utilidad para validar frases palíndromas.
+ */
 //import { Given, When, Then } from '@cucumber/cucumber'
-import { test,expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { HomePage } from '../src/pages/HomePage.ts';
-import {RecaudosPage} from '../src/pages/RecaudosPage.ts';
+import { RecaudosPage } from '../src/pages/RecaudosPage.ts';
 import { isPalindrome, printIsPalindrome } from '../src/utils/palindrome';
 
 /*
@@ -34,17 +38,21 @@ Then('el documento se abre correctamente en una nueva pestaña', async function 
 */
 test.describe('Validación de Reglamento de Recaudos', () => {
   test('Debe abrir el PDF correctamente', async ({ page }) => {
-    const home= new HomePage(page);
-    await home.ValidaIngreso()
-    await home.ValidaButtonEmpresas()
-    await home.ValidaButtonProductos()
-    await home.ValidaButtonRecaudos()
+    // Inicializa page object y navega hasta la sección Recaudos
+    const home = new HomePage(page);
+    await home.ValidaIngreso();
+    await home.ValidaButtonEmpresas();
+    await home.ValidaButtonProductos();
+    await home.ValidaButtonRecaudos();
+
+    // Valida que la sección Recaudos esté visible y abre el reglamento
     const recaudos = new RecaudosPage(page);
     await recaudos.ValidaIngreso();
     await recaudos.openReglamentoPDF();
-    
-    //const validatePDF = new ValidatePDF(page);
-    //validatePDF.validaTituloPDF();
+
+    // Nota: la comprobación de contenido del PDF puede requerir abrir la nueva pestaña y esperar su carga
+    // const validatePDF = new ValidatePDF(page);
+    // await validatePDF.validaTituloPDF();
   });
 });
 
